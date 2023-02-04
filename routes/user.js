@@ -9,5 +9,6 @@ const router = Router();
 router.get("/home", home);
 router.post("/save", isAuth, save);
 router.post("/edit", isAuth, edit);
+router.post("/removeAccount", isAuth);
 
 module.exports = router;
