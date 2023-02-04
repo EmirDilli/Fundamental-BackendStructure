@@ -33,11 +33,11 @@ module.exports.home = async (req, res) => {
     //getting nextSurah as + 1
     let nextSurah;
     if (114 == lastCompleted) {
-      nextSurah = await surahDB.find({
+      nextSurah = await surahDB.findOne({
         surah_no: 1,
       });
     } else {
-      nextSurah = await surahDB.find({
+      nextSurah = await surahDB.findOne({
         surah_no: lastCompleted + 1,
       });
     }
