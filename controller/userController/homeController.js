@@ -11,7 +11,7 @@ dotenv.config();
  */
 module.exports.home = async (req, res) => {
   try {
-    let lastCompleted = req.params.lastCompleted ?? 0;
+    let lastCompleted = +req.params.lastCompleted ?? 0;
     let start;
     let end;
 
