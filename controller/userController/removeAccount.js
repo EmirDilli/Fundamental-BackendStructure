@@ -10,13 +10,12 @@ const userDB = require("../../models/user");
 module.exports.removeAccount = async (req, res) => {
   try {
     const user = req.user;
-    const userdb = await userDB.findOne({ username: user });
-    if (userdb) {
+    if (!user) {
       res.status(404).json({
         message: "user does not exist",
       });
     }
-    await userDB.deleteOne({ username: user });
+    await userDB.deleteOne({ _id: user._id });
     res.status(200).json({
       message: "success",
     });
