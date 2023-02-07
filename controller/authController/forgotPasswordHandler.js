@@ -33,16 +33,16 @@ module.exports.forgotPassword = async (request, response) => {
     const transporter = nodeMailer.createTransport({
       service: "gmail",
       auth: {
-        user: "emirkaan184@gmail.com",
+        user: process.env.HOST_MAIL,
         pass: process.env.HOST_MAIL_PASSWORD,
       },
     });
 
     const mailOptions = {
-      from: "emirkaan184@gmail.com",
+      from: process.env.HOST_MAIL,
       to: email,
       subjects: "Password Reset",
-      text: "Your verification code is " + code,
+      text: "Your reset password code is " + code,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

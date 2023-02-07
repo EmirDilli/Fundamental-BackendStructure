@@ -11,10 +11,7 @@ dotenv.config();
  */
 module.exports.home = async (req, res) => {
   try {
-    let lastCompleted = +req.params.lastCompleted ?? 0;
-    console.log(lastCompleted);
-    console.log(typeof lastCompleted);
-    console.log(req.params);
+    let lastCompleted = +(req.query.lastCompleted ?? 0);
     let start;
     let end;
 
@@ -45,10 +42,12 @@ module.exports.home = async (req, res) => {
       });
     }
 
-    const surahs = await surahDB.find(
-      { surah_no: { $gte: start, $lte: end } },
-      { surah_no: 1, _id: 1, name: 1 }
-    );
+    const surahs = await surahDB
+      .find(
+        { surah_no: { $gte: start, $lte: end } },
+        { surah_no: 1, _id: 1, name: 1 }
+      )
+      .sort({ surah_no: 1 });
 
     res.status(200).json({
       detailedSurah: nextSurah,
