@@ -42,10 +42,12 @@ module.exports.home = async (req, res) => {
       });
     }
 
-    const surahs = await surahDB.find(
-      { surah_no: { $gte: start, $lte: end } },
-      { surah_no: 1, _id: 1, name: 1 }
-    );
+    const surahs = await surahDB
+      .find(
+        { surah_no: { $gte: start, $lte: end } },
+        { surah_no: 1, _id: 1, name: 1 }
+      )
+      .sort({ surah_no: 1 });
 
     res.status(200).json({
       detailedSurah: nextSurah,
