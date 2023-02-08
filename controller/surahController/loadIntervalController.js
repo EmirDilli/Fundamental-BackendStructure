@@ -15,8 +15,10 @@ module.exports.loadInterval = async (req, res) => {
         message: "bad request",
       });
     }
+    console.log(jsonString);
     const json = JSON.parse(jsonString);
     console.log(json);
+
     const surah_no = json.surah;
     const surah = await surahDB.findOne({ surah_no });
     if (!surah) {
@@ -28,41 +30,35 @@ module.exports.loadInterval = async (req, res) => {
 
     let soundObj;
     let counter = 0;
+
     surah.sounds.every((elmt) => {
       if (elmt.kari_name === kari) {
-        console.log("kari 1");
         soundObj = elmt;
         return false;
       } else {
-        console.log("kari 2");
         counter++;
         return false;
       }
     });
-
     if (!soundObj) {
       return res.status(404).json({
         message: "kari does not exist",
       });
     }
-    console.log("geldi");
 
     let solution = [];
 
     let dbi = 0;
     let reqi = 0;
     while (dbi < surah.details.length) {
-      console.log("geldi 2");
       if (surah.details[dbi].verse.length == json.details[reqi].verse.length) {
         const obje = json.details[reqi];
         solution.push(obje);
         dbi++;
         reqi++;
-        console.log("high 1");
       } else if (
         surah.details[dbi].verse.length < json.details[reqi].verse.length
       ) {
-        console.log("high 2");
         for (let i = 0; i < json.details[reqi].verse.length; i++) {
           const verse = surah.details[dbi].verse;
           i += verse.length - 1;
@@ -102,8 +98,9 @@ module.exports.loadInterval = async (req, res) => {
     return res.status(200).json({
       message: "success",
     });
-  } catch {
+  } catch (err) {
     return res.status(500).json({
+      error: err,
       message: "server error",
     });
   }
