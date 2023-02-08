@@ -15,20 +15,20 @@ module.exports.home = async (req, res) => {
     let start;
     let end;
 
-    //setting the range query
-    if (lastCompleted < 6) {
-      // first 20
-      start = 0;
-      end = 20;
-    } else if (lastCompleted < 101) {
-      // -5 +15 of lastCompleted
-      start = lastCompleted - 5;
-      end = lastCompleted + 14;
-    } else {
-      // last 20
-      start = 95;
-      end = 114;
-    }
+    // //setting the range query
+    // if (lastCompleted < 6) {
+    //   // first 20
+    //   start = 0;
+    //   end = 20;
+    // } else if (lastCompleted < 101) {
+    //   // -5 +15 of lastCompleted
+    //   start = lastCompleted - 5;
+    //   end = lastCompleted + 14;
+    // } else {
+    //   // last 20
+    //   start = 95;
+    //   end = 114;
+    // }
 
     //getting nextSurah as + 1
     let nextSurah;
@@ -44,7 +44,8 @@ module.exports.home = async (req, res) => {
 
     const surahs = await surahDB
       .find(
-        { surah_no: { $gte: start, $lte: end } },
+        {},
+        // { surah_no: { $gte: start, $lte: end } },
         { surah_no: 1, _id: 1, name: 1 }
       )
       .sort({ surah_no: 1 });
