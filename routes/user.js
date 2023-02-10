@@ -8,7 +8,7 @@ const isAuth = require("../utils/isAuth");
 const router = Router();
 
 router.get("/home", home);
-router.post("/save", isAuth, save);
+router.post("/saveVerses", isAuth, save);
 router.post("/edit", isAuth, edit);
 router.post("/removeAccount", isAuth, removeAccount);
 

@@ -1,6 +1,7 @@
 const { default: mongoose } = require("mongoose");
 const express = require("express");
 const surahDB = require("../../models/surah");
+const userDB = require("../../models/user");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -12,23 +13,12 @@ dotenv.config();
 module.exports.home = async (req, res) => {
   try {
     let lastCompleted = +(req.query.lastCompleted ?? 0);
-    let start;
-    let end;
+    let userId = req.query.userId;
 
-    // //setting the range query
-    // if (lastCompleted < 6) {
-    //   // first 20
-    //   start = 0;
-    //   end = 20;
-    // } else if (lastCompleted < 101) {
-    //   // -5 +15 of lastCompleted
-    //   start = lastCompleted - 5;
-    //   end = lastCompleted + 14;
-    // } else {
-    //   // last 20
-    //   start = 95;
-    //   end = 114;
-    // }
+    let user;
+    if (userId) {
+      user = await userDB.findById(mongoose.Types.ObjectId(userId));
+    }
 
     //getting nextSurah as + 1
     let nextSurah;
@@ -53,6 +43,7 @@ module.exports.home = async (req, res) => {
     res.status(200).json({
       detailedSurah: nextSurah,
       surahList: surahs,
+      savedVerses: user?.savedVerses,
     });
   } catch (err) {
     console.log(err);

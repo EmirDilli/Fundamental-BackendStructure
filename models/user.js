@@ -29,8 +29,12 @@ const UserScheama = new mongoose.Schema({
   resetToken: {
     type: String,
   },
-
-  savedSurah: [mongoose.SchemaTypes.ObjectId],
+  savedVerses: [
+    {
+      surahNo: Number,
+      verseNo: Number,
+    },
+  ],
 
   createdAt: {
     type: Date,
