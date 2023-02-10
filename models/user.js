@@ -35,7 +35,12 @@ const UserScheama = new mongoose.Schema({
       verseNo: Number,
     },
   ],
-
+  completedVerses: [
+    {
+      surahNo: Number,
+      verseNo: Number,
+    },
+  ],
   createdAt: {
     type: Date,
     required: true,

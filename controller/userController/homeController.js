@@ -65,6 +65,7 @@ module.exports.home = async (req, res) => {
       detailedSurah: nextSurah,
       surahList: surahs,
       savedVerses: user?.savedVerses,
+      completedVerses: user?.completedVerses,
       savedSurahs: savedSurahs,
     });
   } catch (err) {
