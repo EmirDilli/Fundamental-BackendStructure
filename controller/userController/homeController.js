@@ -49,10 +49,14 @@ module.exports.home = async (req, res) => {
         }
       }
 
+      const surahNoList = [];
       map.forEach(async (value, key) => {
         console.log(value, key);
-        savedSurahs.push(await surahDB.findOne({ surah_no: key }));
+        surahNoList.push(key);
       });
+
+      console.log(surahNoList);
+      savedSurahs = await surahDB.find({ surah_no: surahNoList });
 
       console.log(savedSurahs);
     }
