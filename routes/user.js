@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { home } = require("../controller/userController/homeController");
-const { save } = require("../controller/userController/saveController");
+const { saveVerses } = require("../controller/userController/saveController");
 const { edit } = require("../controller/userController/editController");
 const { removeAccount } = require("../controller/userController/removeAccount");
 const isAuth = require("../utils/isAuth");
@@ -8,7 +8,7 @@ const isAuth = require("../utils/isAuth");
 const router = Router();
 
 router.get("/home", home);
-router.post("/saveVerses", isAuth, save);
+router.post("/saveVerses", isAuth, saveVerses);
 router.post("/edit", isAuth, edit);
 router.post("/removeAccount", isAuth, removeAccount);
 

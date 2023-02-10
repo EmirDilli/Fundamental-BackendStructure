@@ -11,19 +11,10 @@ const userDB = require("../../models/user");
 module.exports.saveVerses = async (req, res) => {
   //checking if there is a server side error
   try {
-    const jsonString = req.body.data;
-    if (!jsonString) {
-      return res.status(400).json({
-        message: "bad request",
-      });
-    }
-    console.log(jsonString);
-    const json = JSON.parse(jsonString);
-    console.log(json);
-
+    const data = req.body.data;
     const user = req.user;
 
-    user.savedVerses = json.data;
+    user.savedVerses = data;
 
     await user.save();
 
