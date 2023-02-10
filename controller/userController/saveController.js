@@ -8,7 +8,7 @@ const userDB = require("../../models/user");
  * @param {express.Response} res
  */
 
-module.exports.save = async (req, res) => {
+module.exports.saveVerses = async (req, res) => {
   //checking if there is a server side error
   try {
     const jsonString = req.body.data;
@@ -23,31 +23,15 @@ module.exports.save = async (req, res) => {
 
     const user = req.user;
 
-    user.savedVerses = json.data;
+    user.savedVerses = json;
 
     await user.save();
 
     return res.status(201).json({ message: "success" });
   } catch (err) {
+    console.log(err);
     res.status(500).json({
       message: "server error",
     });
   }
 };
-
-{
-  data: [
-    {
-      surahNo: 5,
-      verseNo: 2,
-    },
-    {
-      surahNo: 5,
-      verseNo: 2,
-    },
-    {
-      surahNo: 5,
-      verseNo: 2,
-    },
-  ];
-}

@@ -40,10 +40,28 @@ module.exports.home = async (req, res) => {
       )
       .sort({ surah_no: 1 });
 
+    let savedSurahs = [];
+    if (user) {
+      const map = new Map();
+      for (let i = 0; i < user.savedVerses.length; i++) {
+        if (!map.get(user.savedVerses[i].surahNo)) {
+          map.set(user.savedVerses[i].surahNo, 1);
+        }
+      }
+
+      map.forEach(async (value, key) => {
+        console.log(value, key);
+        savedSurahs.push(await surahDB.findOne({ surah_no: key }));
+      });
+
+      console.log(savedSurahs);
+    }
+
     res.status(200).json({
       detailedSurah: nextSurah,
       surahList: surahs,
       savedVerses: user?.savedVerses,
+      savedSurahs: savedSurahs,
     });
   } catch (err) {
     console.log(err);
