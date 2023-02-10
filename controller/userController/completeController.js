@@ -23,7 +23,7 @@ module.exports.completeVerses = async (req, res) => {
 
     const user = req.user;
 
-    user.completeVerses = json;
+    user.completedVerses = json;
 
     await user.save();
 
