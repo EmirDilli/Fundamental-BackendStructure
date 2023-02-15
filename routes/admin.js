@@ -1,8 +1,23 @@
 const { Router } = require("express");
+const {
+  editSurahController,
+} = require("../controller/adminController/editSurahController.js");
+const {
+  uploadSurahController,
+} = require("../controller/adminController/uploadSurahHandler.js");
+const {
+  userGetController,
+} = require("../controller/adminController/userGetController.js");
 const surahUploadMulter = require("../services/uploadFileService.js");
 
 const router = Router();
 
-router.post("/uploadSurah", surahUploadMulter.single("sound"), verifyToken);
+router.post(
+  "/uploadSurah",
+  surahUploadMulter.single("sound"),
+  uploadSurahController
+);
+router.get("/getUsers", userGetController);
+router.post("/editSurah", editSurahController);
 
 module.exports = router;

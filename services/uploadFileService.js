@@ -36,7 +36,6 @@ const s3 = new aws.S3({
   accessKeyId: process.env.ACCESS_KEY,
   secretAccessKey: process.env.SECRET_ACCESS_KEY,
 });
-
 // fra1.digitaloceanspaces.com
 
 // DL9XmQaEcOAqvh23vy6nUj379ct3+8+K31YhztymbzI pri

@@ -5,15 +5,15 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 
-const exampleBody = {
-  data: {
-    surahNo: 1,
-    kariName: "Serhat",
-    isMealSound: true,
-  },
-};
+// const exampleBody = {
+//   data: {
+//     surahNo: 1,
+//     kariName: "Serhat",
+//     isMealSound: true,
+//   },
+// };
 
-module.exports.uploadSurah = async (req, res) => {
+module.exports.uploadSurahController = async (req, res) => {
   try {
     const jsonString = req.body.data;
     if (!jsonString) {
