@@ -77,6 +77,7 @@ const verifySurahData = (surahData) => {
     !surahData.explanation ||
     typeof surahData.explanation.nl != "string"
   ) {
+    console.log("surah no, name or explanation does not exist");
     return false;
   }
 
@@ -89,6 +90,7 @@ const verifySurahData = (surahData) => {
   });
 
   if (soundsError) {
+    console.log("sounds are not valid");
     return false;
   }
 
@@ -101,6 +103,7 @@ const verifySurahData = (surahData) => {
   });
 
   if (mealSoundsError) {
+    console.log("meal are not valid");
     return false;
   }
 
@@ -110,14 +113,13 @@ const verifySurahData = (surahData) => {
   surahData.details.forEach((detail) => {
     if (!detail.verse) {
       detailsError = true;
+      console.log("details are not valid");
       return false;
     }
     verseArray.push(...detail.verse);
-    if (
-      typeof detail.text != "string" ||
-      !detail.meaning?.nl ||
-      !detail.explanation?.nl
-    ) {
+    if (typeof detail.text != "string" || !detail.meaning?.nl) {
+      console.log("details text or meaning does not exist", detail);
+
       detailsError = true;
     }
   });
