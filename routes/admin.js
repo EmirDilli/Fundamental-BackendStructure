@@ -20,7 +20,7 @@ router.post(
   surahUploadMulter.single("sound"),
   uploadSurahController
 );
-router.get("/getUsers", userGetController);
+router.get("/users", userGetController);
 router.post("/editSurah", editSurahController);
 router.get("/surahs", getSurahList);
 
