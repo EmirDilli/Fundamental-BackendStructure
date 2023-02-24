@@ -3,6 +3,9 @@ const {
   editSurahController,
 } = require("../controller/adminController/editSurahController.js");
 const {
+  getSurahList,
+} = require("../controller/adminController/getSurahList.js");
+const {
   uploadSurahController,
 } = require("../controller/adminController/uploadSurahHandler.js");
 const {
@@ -19,5 +22,6 @@ router.post(
 );
 router.get("/getUsers", userGetController);
 router.post("/editSurah", editSurahController);
+router.get("/surahs", getSurahList);
 
 module.exports = router;
