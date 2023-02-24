@@ -2,7 +2,6 @@ const multer = require("multer");
 const aws = require("aws-sdk");
 const multerS3 = require("multer-s3");
 const path = require("path");
-const { DecodeToken } = require("../utils/token");
 
 // const imageStorage = multer.diskStorage({
 //   destination: "images", // Destination to store image
