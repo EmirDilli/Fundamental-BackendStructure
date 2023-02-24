@@ -29,7 +29,7 @@ const path = require("path");
 // });
 
 //"fra1.digitaloceanspaces.com"
-const spacesEndpoint = new aws.Endpoint(Process.env.SPACE_ENDPOINT);
+const spacesEndpoint = new aws.Endpoint(process.env.SPACE_ENDPOINT);
 const s3 = new aws.S3({
   endpoint: spacesEndpoint,
   accessKeyId: process.env.ACCESS_KEY,
