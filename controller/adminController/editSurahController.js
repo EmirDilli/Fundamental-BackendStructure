@@ -51,13 +51,11 @@ module.exports.editSurahController = async (req, res) => {
       });
     }
 
-    const deletedSurah = new DeletedSurah(oldSurah);
-    await deletedSurah.save();
+    await DeletedSurah.create(oldSurah);
 
     await Surah.deleteOne({ surah_no: surahData.surah_no });
 
-    const newSurah = new Surah(surahData);
-    await newSurah.save();
+    const newSurah = await Surah.create(surahData);
 
     return res.status(200).json({ message: "success", surah: newSurah });
   } catch (error) {
