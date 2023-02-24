@@ -22,6 +22,7 @@ module.exports.editSurahController = async (req, res) => {
     }
     console.log(jsonString);
     const surahData = JSON.parse(jsonString);
+    surahData._id = undefined;
 
     if (!surahData.sounds) {
       surahData.sounds = [];
