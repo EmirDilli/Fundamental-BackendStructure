@@ -60,6 +60,7 @@ module.exports.editSurahController = async (req, res) => {
 
     return res.status(200).json({ message: "success", surah: newSurah });
   } catch (error) {
+    console.log("error", error);
     return res.status(500).json({ message: "error", error });
   }
 };
