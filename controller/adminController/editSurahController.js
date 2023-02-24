@@ -94,7 +94,7 @@ const verifySurahData = (surahData) => {
 
   // check mealSounds
   let mealSoundsError = false;
-  surahData.somealSounds.forEach((sound) => {
+  surahData.mealSounds.forEach((sound) => {
     if (typeof sound.kari_name != "string" || typeof sound.url != "string") {
       mealSoundsError = true;
     }
