@@ -21,7 +21,7 @@ router.post(
   uploadSurahController
 );
 router.get("/users", userGetController);
-router.post("/editSurah", editSurahController);
+router.put("/surah", editSurahController);
 router.get("/surahs", getSurahList);
 
 module.exports = router;
