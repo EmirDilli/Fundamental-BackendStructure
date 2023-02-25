@@ -11,9 +11,10 @@ module.exports.search = async (req, res) => {
   try {
     //getting the query parameter
     const { text } = req.query;
-
+    console.log(req.query);
     //if text is empty it returns 20 surahs
     if (!text) {
+      console.log("text not found. Default list is returning");
       const surahs = await surahDB
         .find({}, { _id: 1, name: 1, surah_no: 1 })
         .limit(20);
@@ -23,6 +24,8 @@ module.exports.search = async (req, res) => {
     }
     //if text is not empty
     else {
+      console.log("text is: ", text);
+
       const surahs = await surahDB
         .find(
           {

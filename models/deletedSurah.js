@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const deletedSurahSchema = new mongoose.Schema({
   surah_no: Number,
   name: { nl: String },
+  searchName: String,
   explanation: { nl: String },
   sounds: [
     {
