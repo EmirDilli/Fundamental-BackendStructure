@@ -15,6 +15,6 @@ router.get("/search", search);
 router.get("/detail", detail);
 
 //admin
-router.post("/loadInterval", isAuth, loadInterval);
+router.post("/loadInterval", loadInterval);
 router.post("/mealLoadInterval", isAuth, mealLoadInterval);
 module.exports = router;

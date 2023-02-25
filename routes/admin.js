@@ -11,6 +11,9 @@ const {
 const {
   userGetController,
 } = require("../controller/adminController/userGetController.js");
+const {
+  loadInterval,
+} = require("../controller/surahController/loadIntervalController.js");
 const surahUploadMulter = require("../services/uploadFileService.js");
 
 const router = Router();
@@ -23,5 +26,6 @@ router.post(
 router.get("/users", userGetController);
 router.put("/surah", editSurahController);
 router.get("/surahs", getSurahList);
+router.post("/loadInterval", loadInterval);
 
 module.exports = router;

@@ -6,25 +6,14 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 
 // const exampleBody = {
-//   data: {
-//     surahNo: 1,
-//     kariName: "Serhat",
-//     isMealSound: true,
-//   },
+//   surahNo: 1,
+//   kariName: "Serhat",
+//   isMealSound: true,
 // };
 
 module.exports.uploadSurahController = async (req, res) => {
   try {
-    const jsonString = req.body.data;
-    if (!jsonString) {
-      return res.status(400).json({
-        message: "bad request",
-      });
-    }
-    console.log(jsonString);
-    const surahData = JSON.parse(jsonString);
-    console.log(json);
-
+    const surahData = req.query;
     console.log(req.file);
 
     const sound = req.file.key;
@@ -62,6 +51,7 @@ module.exports.uploadSurahController = async (req, res) => {
 
     return res.status(200).json({ message: "success", surah });
   } catch (error) {
+    console.log(error);
     return res.status(401).json({ message: "error", error });
   }
 };

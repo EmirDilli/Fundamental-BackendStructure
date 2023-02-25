@@ -31,7 +31,7 @@ module.exports.loadInterval = async (req, res) => {
     let soundObj;
     let counter = 0;
 
-    surah.sounds.every((elmt) => {
+    (json.isMealSound ? surah.mealSounds : surah.sounds).every((elmt) => {
       if (elmt.kari_name === kari) {
         soundObj = elmt;
         return false;
@@ -92,7 +92,8 @@ module.exports.loadInterval = async (req, res) => {
     }
     console.log(solution);
 
-    surah.sounds[counter].intervals = solution;
+    (json.isMealSound ? surah.mealSounds : surah.sounds)[counter].intervals =
+      solution;
     await surah.save();
 
     return res.status(200).json({
