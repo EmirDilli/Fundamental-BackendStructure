@@ -51,6 +51,8 @@ module.exports.editSurahController = async (req, res) => {
       });
     }
 
+    oldSurah._id = undefined;
+
     await DeletedSurah.create(oldSurah);
 
     await Surah.deleteOne({ surah_no: surahData.surah_no });
