@@ -57,7 +57,8 @@ module.exports.editSurahController = async (req, res) => {
 
     await Surah.deleteOne({ surah_no: surahData.surah_no });
 
-    const newSurah = await Surah.create(surahData);
+    const newSurah = Surah(surahData);
+    await newSurah.save();
 
     return res.status(200).json({ message: "success", surah: newSurah });
   } catch (error) {

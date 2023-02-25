@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const deletedSurahSchema = new mongoose.Schema({
-  _id: mongoose.SchemaTypes.ObjectId,
   surah_no: Number,
   name: { nl: String },
   explanation: { nl: String },

@@ -13,9 +13,7 @@ dotenv.config();
 module.exports.detail = async (req, res) => {
   try {
     const { id } = req.query;
-    const fatiha = await surahDB.findById(
-      mongoose.Types.ObjectId(process.env.DEFAULT_SURAH_ID)
-    );
+    const fatiha = await surahDB.findOne({ surah_no: 1 });
     if (!id) {
       return res.status(200).json({
         surah: fatiha,
