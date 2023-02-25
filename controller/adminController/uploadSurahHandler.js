@@ -22,7 +22,7 @@ module.exports.uploadSurahController = async (req, res) => {
       res.status(404).json({ error: "sound file not found", message: "error" });
     }
 
-    const surah = await Surah.findOne({ surahNo: surahData.surahNo });
+    const surah = await Surah.findOne({ surah_no: surahData.surahNo });
 
     if (!surah) {
       res.status(404).json({ error: "surah not found", message: "error" });
