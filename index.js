@@ -4,11 +4,13 @@ const isAuth = require("./utils/isAuth");
 const userRoute = require("./routes/user");
 const surahRoute = require("./routes/surah");
 const adminRoute = require("./routes/admin");
+var cors = require("cors");
 const env = require("dotenv");
 const app = express();
 const PORT = 3001;
 const mongoose = require("mongoose");
 
+var cors = require("cors");
 app.use(express.json());
 app.use(express.urlencoded());
 

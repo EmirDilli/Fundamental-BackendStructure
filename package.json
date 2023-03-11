@@ -13,6 +13,7 @@
   "dependencies": {
     "aws-sdk": "^2.1314.0",
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express.js": "^1.0.0",
     "jsonwebtoken": "^9.0.0",
