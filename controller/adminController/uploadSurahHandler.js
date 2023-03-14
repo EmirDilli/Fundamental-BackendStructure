@@ -51,6 +51,7 @@ module.exports.uploadSurahController = async (req, res) => {
 
     return res.status(200).json({ message: "success", surah });
   } catch (error) {
+    console.log("error");
     console.log(error);
     return res.status(401).json({ message: "error", error });
   }

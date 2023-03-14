@@ -3,6 +3,7 @@ const DeletedSurah = require("../../models/deletedSurah");
 
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const deleteFile = require("../../services/deleteFileService");
 
 // const exampleBody = {
 //   data: {
@@ -42,7 +43,9 @@ module.exports.editSurahController = async (req, res) => {
         .json({ message: "error", error: "Surah data is not valid!" });
     }
 
-    const oldSurah = Surah.findOne({ surah_no: surahData.surah_no });
+    const oldSurah = await Surah.findOne({ surah_no: surahData.surah_no });
+
+    console.log(oldSurah);
 
     if (!oldSurah) {
       return res.status(404).json({
@@ -51,9 +54,7 @@ module.exports.editSurahController = async (req, res) => {
       });
     }
 
-    oldSurah._id = undefined;
-
-    await DeletedSurah.create(oldSurah);
+    checkFileDifference(oldSurah, surahData);
 
     await Surah.deleteOne({ surah_no: surahData.surah_no });
 
@@ -141,4 +142,26 @@ const verifySurahData = (surahData) => {
   }
 
   return true;
+};
+
+const checkFileDifference = (oldSurah, surahData) => {
+  if (oldSurah.sounds && surahData.sounds) {
+    const oldSurahFiles = oldSurah.sounds.map((sound) => sound.url);
+    const updatedFiles = surahData.sounds.map((sound) => sound.url);
+
+    console.log(oldSurahFiles);
+    console.log(updatedFiles);
+
+    const deletedFiles = oldSurahFiles.filter(
+      (url) => !updatedFiles.includes(url)
+    );
+
+    console.log(deletedFiles);
+
+    deletedFiles.forEach((fileUrl) =>
+      deleteFile(fileUrl.split("digitaloceanspaces.com/")[1])
+    );
+  } else {
+    console.error("Surah sounds not found");
+  }
 };

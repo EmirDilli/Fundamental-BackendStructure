@@ -58,14 +58,7 @@ const surahUploadMulter = multer({
     },
     key: function (req, file, cb) {
       console.log(req);
-      cb(
-        null,
-        req.query.surahNo +
-          "_" +
-          req.query.kariName +
-          Date.now() +
-          path.extname(file.originalname)
-      );
+      cb(null, Date.now() + path.extname(file.originalname));
     },
     filename: (req, file, cb) => {
       cb(null, Date.now() + path.extname(file.originalname));
