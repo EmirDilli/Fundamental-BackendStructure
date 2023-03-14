@@ -15,13 +15,12 @@ const deleteFile = async (key) => {
 
   console.log(key);
 
-  s3.deleteObject(params, function (error, data) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Successfully deleted file", data);
-    }
-  });
+  try {
+    await s3.deleteObject(params).promise();
+    console.log("file deleted Successfully");
+  } catch (err) {
+    console.log("ERROR in file Deleting : " + JSON.stringify(err));
+  }
 };
 
 module.exports = deleteFile;
